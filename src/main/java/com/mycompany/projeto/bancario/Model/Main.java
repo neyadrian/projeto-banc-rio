@@ -9,10 +9,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite o nome do titular: ");
-        String nome = scanner.nextLine();
+        System.out.print("Digite o CPF do titular: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Digite a senha do titular: ");
+        String senha = scanner.nextLine();
 
-        Conta conta = new Conta(nome);
+        Conta conta = new Conta(cpf, senha);
 
         int opcao;
 

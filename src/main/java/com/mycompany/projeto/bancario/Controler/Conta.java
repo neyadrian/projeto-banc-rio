@@ -2,11 +2,13 @@ package com.mycompany.projeto.bancario.Controler;
 
 public class Conta {
 
-    private String titular;
+    private String cpf;
+    private String senha;
     private double saldo;
 
-    public Conta(String titular) {
-        this.titular = titular;
+    public Conta(String cpf, String senha) {
+        this.cpf = cpf;
+        this.senha = senha;
         this.saldo = 0.0;
     }
 
@@ -33,6 +35,6 @@ public class Conta {
     }
 
     public String getTitular() {
-        return titular;
+        return cpf;
     }
 }
