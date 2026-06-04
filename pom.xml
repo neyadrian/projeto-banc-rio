@@ -10,4 +10,17 @@
         <maven.compiler.release>25</maven.compiler.release>
         <exec.mainClass>com.mycompany.projeto.bancario.Model.Main</exec.mainClass>
     </properties>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.png</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.jpeg</include>
+                    <include>**/*.gif</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

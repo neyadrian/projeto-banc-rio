@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author neyadrian
@@ -50,6 +52,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         botaoEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
         botaoEntrar.setText("ENTRAR");
+        botaoEntrar.addActionListener(this::botaoEntrarActionPerformed);
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelar.setText("CANCELAR");
@@ -118,12 +121,22 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarContaActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new TelaCadastro().setVisible(true);
     }//GEN-LAST:event_botaoCriarContaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
+        String userLogin = campoCPF.getText();
+        String senhaLogin = campoSenha.getText();
+        
+        if(userLogin.equalsIgnoreCase("070") && senhaLogin.equalsIgnoreCase("admin")) {
+            dispose();
+            new TelaPrincipal().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Dados Inválidos!");
+        }
+    }//GEN-LAST:event_botaoEntrarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

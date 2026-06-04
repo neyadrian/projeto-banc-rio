@@ -33,6 +33,7 @@ public class TelaSaque extends javax.swing.JFrame {
         campoSaque = new javax.swing.JTextField();
         botaoConfirmarSaque = new javax.swing.JButton();
         botaoCancelarSaque = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +48,8 @@ public class TelaSaque extends javax.swing.JFrame {
         botaoCancelarSaque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelarSaque.setText("CANCELAR");
         botaoCancelarSaque.addActionListener(this::botaoCancelarSaqueActionPerformed);
+
+        jLabel3.setText("Saldo Atual: R$ 709,09");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,7 +68,10 @@ public class TelaSaque extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addComponent(botaoConfirmarSaque)
                         .addGap(26, 26, 26)
-                        .addComponent(botaoCancelarSaque)))
+                        .addComponent(botaoCancelarSaque))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel3)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,7 +79,9 @@ public class TelaSaque extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -122,5 +130,6 @@ public class TelaSaque extends javax.swing.JFrame {
     private javax.swing.JTextField campoSaque;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

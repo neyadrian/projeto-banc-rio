@@ -37,6 +37,7 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         senhaPix = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +53,8 @@ public class TelaPix extends javax.swing.JFrame {
 
         jLabel2.setText("Valor");
 
+        campoPix.addActionListener(this::campoPixActionPerformed);
+
         try {
             campoCPFPix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -62,6 +65,8 @@ public class TelaPix extends javax.swing.JFrame {
 
         jLabel1.setText("Senha");
 
+        jLabel4.setText("Saldo Atual: R$ 709,09");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,10 +74,12 @@ public class TelaPix extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(Pix))
+                        .addGap(91, 91, 91)
+                        .addComponent(botaoConfirmarPIX)
+                        .addGap(26, 26, 26)
+                        .addComponent(botaoCancelarPIX))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -86,10 +93,11 @@ public class TelaPix extends javax.swing.JFrame {
                             .addComponent(campoPix)
                             .addComponent(senhaPix, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(botaoConfirmarPIX)
-                        .addGap(26, 26, 26)
-                        .addComponent(botaoCancelarPIX)))
+                        .addGap(182, 182, 182)
+                        .addComponent(Pix))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jLabel4)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,7 +105,9 @@ public class TelaPix extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(Pix)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(campoCPFPix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,7 +119,7 @@ public class TelaPix extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senhaPix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConfirmarPIX)
                     .addComponent(botaoCancelarPIX))
@@ -122,6 +132,10 @@ public class TelaPix extends javax.swing.JFrame {
     private void botaoCancelarPIXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarPIXActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCancelarPIXActionPerformed
+
+    private void campoPixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPixActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoPixActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +171,7 @@ public class TelaPix extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField senhaPix;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author neyadrian
@@ -36,7 +38,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         campoNovoTelefone = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         campoNovaSenha = new javax.swing.JPasswordField();
-        botaoVoltar = new javax.swing.JButton();
+        botaoCancelarCadastro = new javax.swing.JButton();
         botaoCriarConta1 = new javax.swing.JButton();
         campoNovoCPF = new javax.swing.JFormattedTextField();
 
@@ -61,9 +63,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         campoNovaSenha.addActionListener(this::campoNovaSenhaActionPerformed);
 
-        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/voltar.png"))); // NOI18N
-        botaoVoltar.setText("VOLTAR");
-        botaoVoltar.addActionListener(this::botaoVoltarActionPerformed);
+        botaoCancelarCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
+        botaoCancelarCadastro.setText("CANCELAR");
+        botaoCancelarCadastro.addActionListener(this::botaoCancelarCadastroActionPerformed);
 
         botaoCriarConta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
         botaoCriarConta1.setText("CRIAR");
@@ -109,7 +111,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(botaoCriarConta1)
                                         .addGap(18, 18, 18)
-                                        .addComponent(botaoVoltar))
+                                        .addComponent(botaoCancelarCadastro))
                                     .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(242, Short.MAX_VALUE))
         );
@@ -137,7 +139,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCriarConta1)
-                    .addComponent(botaoVoltar))
+                    .addComponent(botaoCancelarCadastro))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -148,12 +150,19 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNovaSenhaActionPerformed
 
-    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoVoltarActionPerformed
+    private void botaoCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarCadastroActionPerformed
+        JOptionPane.showMessageDialog(null, "Cadastro Cancelado!");
+        
+        dispose();
+        new TelaLogin().setVisible(true);
+    }//GEN-LAST:event_botaoCancelarCadastroActionPerformed
 
     private void botaoCriarConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConta1ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!");
+        
+        dispose();
+        new TelaPrincipal().setVisible(true);
+
     }//GEN-LAST:event_botaoCriarConta1ActionPerformed
 
     /**
@@ -182,8 +191,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCancelarCadastro;
     private javax.swing.JButton botaoCriarConta1;
-    private javax.swing.JButton botaoVoltar;
     private javax.swing.JLabel cadastro;
     private javax.swing.JPasswordField campoNovaSenha;
     private javax.swing.JFormattedTextField campoNovoCPF;
