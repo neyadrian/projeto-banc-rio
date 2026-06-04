@@ -36,13 +36,13 @@
                       <Component id="campoDeposito" min="-2" pref="145" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Component id="botaoConfirmarDepósito" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="botaoCancelarDeposito" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="75" max="32767" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,7 +87,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/mycompany/projeto/bancario/Icones/valid.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DEPOSITO"/>
+        <Property name="text" type="java.lang.String" value="CONFIRMAR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botaoCancelarDeposito">

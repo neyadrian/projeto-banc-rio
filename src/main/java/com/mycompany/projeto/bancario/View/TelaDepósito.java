@@ -42,7 +42,7 @@ public class TelaDepósito extends javax.swing.JFrame {
         jLabel2.setText("Valor");
 
         botaoConfirmarDepósito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
-        botaoConfirmarDepósito.setText("DEPOSITO");
+        botaoConfirmarDepósito.setText("CONFIRMAR");
 
         botaoCancelarDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelarDeposito.setText("CANCELAR");
@@ -63,11 +63,11 @@ public class TelaDepósito extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(campoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(64, 64, 64)
                         .addComponent(botaoConfirmarDepósito)
                         .addGap(26, 26, 26)
                         .addComponent(botaoCancelarDeposito)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

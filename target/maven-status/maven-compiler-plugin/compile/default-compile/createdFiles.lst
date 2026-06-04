@@ -1,4 +1,8 @@
 com/mycompany/projeto/bancario/Model/Main.class
 com/mycompany/projeto/bancario/View/TelaCadastro.class
+com/mycompany/projeto/bancario/View/TelaSaque.class
+com/mycompany/projeto/bancario/View/TelaPrincipal.class
+com/mycompany/projeto/bancario/View/TelaDepósito.class
+com/mycompany/projeto/bancario/View/TelaLogin$1.class
+com/mycompany/projeto/bancario/View/TelaPix.class
 com/mycompany/projeto/bancario/View/TelaLogin.class
-com/mycompany/projeto/bancario/Controler/Conta.class
