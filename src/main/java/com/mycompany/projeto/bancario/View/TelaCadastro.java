@@ -4,6 +4,7 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import com.mycompany.projeto.bancario.BancoDeDados.conexao;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +44,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         campoNovoCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         cadastro.setFont(new java.awt.Font("Fira Sans", 0, 60)); // NOI18N
         cadastro.setText("Cadastro");
@@ -82,37 +84,34 @@ public class TelaCadastro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(219, 219, 219)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(novoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(campoNovoCPF))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(cadastro)
+                            .addGap(8, 8, 8)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(novoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(campoNovoCPF))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(cadastro)
-                                    .addGap(8, 8, 8)))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(botaoCriarConta1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botaoCancelarCadastro))
-                                    .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(botaoCriarConta1)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoCancelarCadastro))
+                            .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(242, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,10 +157,51 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarCadastroActionPerformed
 
     private void botaoCriarConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConta1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!");
+        String nome = novoNome.getText();
+    String cpf = campoNovoCPF.getText();
+    String telefone = campoNovoTelefone.getText();
+    String senha = new String(campoNovaSenha.getPassword()); // Pega a senha do JPasswordField
+
+    // Validação básica para não salvar vazio
+    if(nome.isEmpty() || cpf.equals("   .   .   -  ") || senha.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
+        return;
+    }
+
+    // 2. Gerar um número de conta aleatório (ex: 5 dígitos)
+    String numeroConta = String.valueOf((int)(Math.random() * 90000) + 10000);
+
+    // 3. Preparar o comando SQL de inserção
+    String sql = "INSERT INTO contas (numero_conta, nome_titular, cpf, telefone, senha) VALUES (?, ?, ?, ?, ?)";
+
+    // 4. Executar a conexão e a inserção
+    try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+         java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
         
+        // Substitui as interrogações (?) do SQL pelos dados da tela
+        stmt.setString(1, numeroConta);
+        stmt.setString(2, nome);
+        stmt.setString(3, cpf);
+        stmt.setString(4, telefone);
+        stmt.setString(5, senha);
+
+        // Executa no banco
+        stmt.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!\nSua conta é: " + numeroConta);
+        
+        // Fecha a tela atual e abre a principal
         dispose();
         new TelaPrincipal().setVisible(true);
+
+    } catch (java.sql.SQLException e) {
+        // Se o CPF já existir, o banco vai reclamar por causa do UNIQUE que configuramos
+        if(e.getMessage().contains("Duplicate entry")){
+            JOptionPane.showMessageDialog(this, "Erro: Este CPF já está cadastrado.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar no banco: " + e.getMessage());
+        }
+    }
 
     }//GEN-LAST:event_botaoCriarConta1ActionPerformed
 
