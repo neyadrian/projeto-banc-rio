@@ -160,42 +160,34 @@ public class TelaCadastro extends javax.swing.JFrame {
         String nome = novoNome.getText();
     String cpf = campoNovoCPF.getText();
     String telefone = campoNovoTelefone.getText();
-    String senha = new String(campoNovaSenha.getPassword()); // Pega a senha do JPasswordField
+    String senha = new String(campoNovaSenha.getPassword()); 
 
-    // Validação básica para não salvar vazio
     if(nome.isEmpty() || cpf.equals("   .   .   -  ") || senha.isEmpty()){
         JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
         return;
     }
 
-    // 2. Gerar um número de conta aleatório (ex: 5 dígitos)
     String numeroConta = String.valueOf((int)(Math.random() * 90000) + 10000);
 
-    // 3. Preparar o comando SQL de inserção
     String sql = "INSERT INTO contas (numero_conta, nome_titular, cpf, telefone, senha) VALUES (?, ?, ?, ?, ?)";
 
-    // 4. Executar a conexão e a inserção
     try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
          java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
         
-        // Substitui as interrogações (?) do SQL pelos dados da tela
         stmt.setString(1, numeroConta);
         stmt.setString(2, nome);
         stmt.setString(3, cpf);
         stmt.setString(4, telefone);
         stmt.setString(5, senha);
 
-        // Executa no banco
         stmt.executeUpdate();
 
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!\nSua conta é: " + numeroConta);
         
-        // Fecha a tela atual e abre a principal
         dispose();
         new TelaPrincipal().setVisible(true);
 
     } catch (java.sql.SQLException e) {
-        // Se o CPF já existir, o banco vai reclamar por causa do UNIQUE que configuramos
         if(e.getMessage().contains("Duplicate entry")){
             JOptionPane.showMessageDialog(this, "Erro: Este CPF já está cadastrado.");
         } else {
@@ -205,9 +197,6 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botaoCriarConta1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
