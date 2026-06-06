@@ -157,7 +157,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarCadastroActionPerformed
 
     private void botaoCriarConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarConta1ActionPerformed
-        String nome = novoNome.getText();
+      String nome = novoNome.getText();
     String cpf = campoNovoCPF.getText();
     String telefone = campoNovoTelefone.getText();
     String senha = new String(campoNovaSenha.getPassword()); 
@@ -185,7 +185,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!\nSua conta é: " + numeroConta);
         
         dispose();
-        new TelaPrincipal().setVisible(true);
+        new TelaPrincipal(numeroConta).setVisible(true);
 
     } catch (java.sql.SQLException e) {
         if(e.getMessage().contains("Duplicate entry")){
