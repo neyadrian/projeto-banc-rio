@@ -17,13 +17,13 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         login = new javax.swing.JLabel();
-        campoCPF = new javax.swing.JTextField();
         cpf = new javax.swing.JLabel();
         senha = new javax.swing.JLabel();
         botaoEntrar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
         botaoCriarConta = new javax.swing.JButton();
         campoSenha = new javax.swing.JPasswordField();
+        campoCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -47,10 +47,24 @@ public class TelaLogin extends javax.swing.JFrame {
         botaoCriarConta.setText("CRIAR CONTA");
         botaoCriarConta.addActionListener(this::botaoCriarContaActionPerformed);
 
+        try {
+            campoCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 180, Short.MAX_VALUE)
+                .addComponent(botaoEntrar)
+                .addGap(26, 26, 26)
+                .addComponent(botaoCancelar)
+                .addGap(26, 26, 26)
+                .addComponent(botaoCriarConta)
+                .addGap(174, 174, 174))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -68,24 +82,16 @@ public class TelaLogin extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 180, Short.MAX_VALUE)
-                .addComponent(botaoEntrar)
-                .addGap(26, 26, 26)
-                .addComponent(botaoCancelar)
-                .addGap(26, 26, 26)
-                .addComponent(botaoCriarConta)
-                .addGap(174, 174, 174))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(login)
-                .addGap(49, 49, 49)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpf))
+                    .addComponent(cpf)
+                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senha)
@@ -95,7 +101,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(botaoEntrar)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoCriarConta))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,14 +117,34 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCriarContaActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        String userLogin = campoCPF.getText();
-        String senhaLogin = campoSenha.getText();
         
-        if(userLogin.equalsIgnoreCase("070") && senhaLogin.equalsIgnoreCase("admin")) {
-            dispose();
-            new TelaPrincipal("").setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Dados Inválidos!");
+        String cpfCliente = campoCPF.getText();
+        String senha = new String(campoSenha.getPassword());
+        
+        if (cpfCliente.isEmpty() || senha.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            return;
+        }
+        
+        String sql = "SELECT numero_conta FROM contas WHERE cpf = ? AND senha = ?";
+        
+        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, cpfCliente);
+            stmt.setString(2, senha);
+            
+            java.sql.ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                String numeroConta = rs.getString("numero_conta");
+                dispose();
+                new TelaPrincipal(numeroConta).setVisible(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "CPF ou senha inválidos!");
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao conectar com o banco: " + e.getMessage());
         }
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
@@ -148,7 +174,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoCriarConta;
     private javax.swing.JButton botaoEntrar;
-    private javax.swing.JTextField campoCPF;
+    private javax.swing.JFormattedTextField campoCPF;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JLabel cpf;
     private javax.swing.JLabel login;
