@@ -202,7 +202,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         String senha = new String(campoNovaSenha.getPassword());
 
         if(nome.isEmpty() || cpf.equals("   .   .   -  ") || senha.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios!");
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
             return;
         }
 
