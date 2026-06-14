@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import com.mycompany.projeto.bancario.Controler.Deposito;
+
 /**
  *
  * @author neyadrian
@@ -146,43 +148,7 @@ public class TelaDepósito extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoConfirmarDepósitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarDepósitoActionPerformed
-        try {
-            String valorTexto = campoValor.getText().replace(",", ".");
-            double valorDeposito = Double.parseDouble(valorTexto);
-            
-            if(valorDeposito <= 0) {
-                javax.swing.JOptionPane.showMessageDialog(this, "O valor deve ser maior que 0!");
-                return;
-            }
-            
-            String sqlUpdate = "UPDATE contas SET saldo = saldo + ? WHERE numero_contas = ?";
-            String sqlInsert = "INSERT INTO transacoes (id_conta, tipo_conta, valor, descrisao)"
-                                + "VALUES ((SELECT id_conta FROM contas WHERE numero_conta = ?), 'DEPOSITO', ?, 'Depósito em conta')";
-            
-            try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
-                java.sql.PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate);
-                java.sql.PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)){
-                
-                
-                stmtUpdate.setDouble(1, valorDeposito);
-                stmtUpdate.setString(2, this.contaLogada);
-                stmtUpdate.executeUpdate();
-                
-                stmtInsert.setString(1, this.contaLogada);
-                stmtInsert.setDouble(2, valorDeposito);
-                stmtInsert.executeUpdate();
-                
-                javax.swing.JOptionPane.showMessageDialog(this, "Depósito realizado com Sucesso!");
-                dispose();
-               
-            } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Erro no banco: " + e.getMessage());
-
-            }
-            
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Digite um valor numérico válido!");
-        }
+        new Deposito().processar(this, this.contaLogada, campoValor.getText());
     }//GEN-LAST:event_botaoConfirmarDepósitoActionPerformed
 
     /**
