@@ -10,12 +10,14 @@ package com.mycompany.projeto.bancario.View;
  */
 public class TelaDepósito extends javax.swing.JFrame {
     
+    private String contaLogada;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaDepósito.class.getName());
 
     /**
      * Creates new form TelaDepósito
      */
-    public TelaDepósito() {
+    public TelaDepósito(String numeroConta) {
+        this.contaLogada = numeroConta;
         initComponents();
     }
 
@@ -35,7 +37,7 @@ public class TelaDepósito extends javax.swing.JFrame {
         botaoCancelarDeposito = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        campoDeposito = new javax.swing.JTextField();
+        campoValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +67,7 @@ public class TelaDepósito extends javax.swing.JFrame {
 
         botaoConfirmarDepósito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
         botaoConfirmarDepósito.setText("CONFIRMAR");
+        botaoConfirmarDepósito.addActionListener(this::botaoConfirmarDepósitoActionPerformed);
 
         botaoCancelarDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelarDeposito.setText("CANCELAR");
@@ -89,7 +92,7 @@ public class TelaDepósito extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(botaoConfirmarDepósito)
@@ -108,7 +111,7 @@ public class TelaDepósito extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(campoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConfirmarDepósito)
@@ -142,6 +145,46 @@ public class TelaDepósito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
+    private void botaoConfirmarDepósitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarDepósitoActionPerformed
+        try {
+            String valorTexto = campoValor.getText().replace(",", ".");
+            double valorDeposito = Double.parseDouble(valorTexto);
+            
+            if(valorDeposito <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "O valor deve ser maior que 0!");
+                return;
+            }
+            
+            String sqlUpdate = "UPDATE contas SET saldo = saldo + ? WHERE numero_contas = ?";
+            String sqlInsert = "INSERT INTO transacoes (id_conta, tipo_conta, valor, descrisao)"
+                                + "VALUES ((SELECT id_conta FROM contas WHERE numero_conta = ?), 'DEPOSITO', ?, 'Depósito em conta')";
+            
+            try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+                java.sql.PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate);
+                java.sql.PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)){
+                
+                
+                stmtUpdate.setDouble(1, valorDeposito);
+                stmtUpdate.setString(2, this.contaLogada);
+                stmtUpdate.executeUpdate();
+                
+                stmtInsert.setString(1, this.contaLogada);
+                stmtInsert.setDouble(2, valorDeposito);
+                stmtInsert.executeUpdate();
+                
+                javax.swing.JOptionPane.showMessageDialog(this, "Depósito realizado com Sucesso!");
+                dispose();
+               
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro no banco: " + e.getMessage());
+
+            }
+            
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Digite um valor numérico válido!");
+        }
+    }//GEN-LAST:event_botaoConfirmarDepósitoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -164,14 +207,14 @@ public class TelaDepósito extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaDepósito().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaDepósito("").setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelarDeposito;
     private javax.swing.JButton botaoConfirmarDepósito;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JTextField campoDeposito;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
