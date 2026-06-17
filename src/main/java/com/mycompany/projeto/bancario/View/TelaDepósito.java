@@ -141,7 +141,7 @@ public class TelaDepósito extends javax.swing.JFrame {
         if (resposta == JOptionPane.YES_OPTION) {
             System.out.println("Depósito Cancelado");
             dispose();
-            new TelaPrincipal("").setVisible(true);
+            new TelaPrincipal(this.contaLogada).setVisible(true);
         } else if(resposta == JOptionPane.NO_OPTION) {
             
         } else {

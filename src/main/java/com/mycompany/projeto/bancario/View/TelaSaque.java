@@ -22,6 +22,29 @@ public class TelaSaque extends javax.swing.JFrame {
     public TelaSaque(String numeroConta) {
         this.contaLogada = numeroConta;
         initComponents();
+        
+         carregarSaldoConta();    
+    }
+    
+    private void carregarSaldoConta() {
+        String sql = "SELECT saldo FROM contas WHERE numero_conta = ?";
+
+        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, this.contaLogada);
+            
+            java.sql.ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                double saldoDoBanco = rs.getDouble("saldo");
+                
+                saldoCliente.setText(String.format("R$ %.2f", saldoDoBanco));
+            }
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao buscar os dados da conta: " + e.getMessage());
+        }
     }
 
     /**
@@ -40,7 +63,7 @@ public class TelaSaque extends javax.swing.JFrame {
         botaoConfirmarSaque = new javax.swing.JButton();
         botaoCancelarSaque = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        saldoCliente = new javax.swing.JLabel();
         campoSenha = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
@@ -76,8 +99,8 @@ public class TelaSaque extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Saque");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Saldo Atual: R$ 709,09");
+        saldoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        saldoCliente.setText("Saldo Atual: R$ 709,09");
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Senha");
@@ -93,7 +116,7 @@ public class TelaSaque extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(jLabel3))
+                        .addComponent(saldoCliente))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(botaoConfirmarSaque)
@@ -118,7 +141,7 @@ public class TelaSaque extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(saldoCliente)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -157,17 +180,18 @@ public class TelaSaque extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoConfirmarSaqueActionPerformed
 
     private void botaoCancelarSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarSaqueActionPerformed
+        
         int resposta = JOptionPane.showConfirmDialog(
             null, 
-            "Deseja cancelar o Depósito?", 
-            "Sair do Depósito",                 
+            "Deseja cancelar o Saque?", 
+            "Sair do Saque",                 
             JOptionPane.YES_NO_OPTION
         );
        
         if (resposta == JOptionPane.YES_OPTION) {
-            System.out.println("Depósito Cancelado");
+            System.out.println("Saque Cancelado");
             dispose();
-            new TelaPrincipal("").setVisible(true);
+            new TelaPrincipal(this.contaLogada).setVisible(true);
         } else if(resposta == JOptionPane.NO_OPTION) {
             
         } else {
@@ -207,9 +231,9 @@ public class TelaSaque extends javax.swing.JFrame {
     private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel saldoCliente;
     // End of variables declaration//GEN-END:variables
 }
