@@ -1,6 +1,8 @@
 
 package com.mycompany.projeto.bancario.View;
 
+import javax.swing.JOptionPane;
+
 public class TelaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPrincipal.class.getName());
@@ -188,7 +190,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new TelaSaque(this.contaLogada).setVisible(true);    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botaoDeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeslogarActionPerformed
-        // TODO add your handling code here:
+        
+        int resposta = JOptionPane.showConfirmDialog(
+            null, 
+            "Deseja sair da conta?", 
+            "Sair da Conta",                 
+            JOptionPane.YES_NO_OPTION
+        );
+       
+        if (resposta == JOptionPane.YES_OPTION) {
+            System.out.println("Conta Deslogada");
+            dispose();
+            new TelaLogin().setVisible(true);
+        } else if(resposta == JOptionPane.NO_OPTION) {
+            
+        } else {
+            
+        }
+ 
     }//GEN-LAST:event_botaoDeslogarActionPerformed
 
     /**

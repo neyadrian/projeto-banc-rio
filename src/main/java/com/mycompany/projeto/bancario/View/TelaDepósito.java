@@ -5,6 +5,7 @@
 package com.mycompany.projeto.bancario.View;
 
 import com.mycompany.projeto.bancario.Controler.Deposito;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +34,6 @@ public class TelaDepósito extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botaoVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         botaoConfirmarDepósito = new javax.swing.JButton();
         botaoCancelarDeposito = new javax.swing.JButton();
@@ -45,24 +45,15 @@ public class TelaDepósito extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/voltar.png"))); // NOI18N
-        botaoVoltar.addActionListener(this::botaoVoltarActionPerformed);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 402, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 39, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(57, 161, 56));
@@ -140,12 +131,23 @@ public class TelaDepósito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCancelarDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarDepositoActionPerformed
-        // TODO add your handling code here:
+        int resposta = JOptionPane.showConfirmDialog(
+            null, 
+            "Deseja cancelar o Depósito?", 
+            "Sair do Depósito",                 
+            JOptionPane.YES_NO_OPTION
+        );
+       
+        if (resposta == JOptionPane.YES_OPTION) {
+            System.out.println("Depósito Cancelado");
+            dispose();
+            new TelaPrincipal("").setVisible(true);
+        } else if(resposta == JOptionPane.NO_OPTION) {
+            
+        } else {
+            
+        }
     }//GEN-LAST:event_botaoCancelarDepositoActionPerformed
-
-    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoConfirmarDepósitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarDepósitoActionPerformed
         new Deposito().processar(this, this.contaLogada, campoValor.getText());
@@ -179,7 +181,6 @@ public class TelaDepósito extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelarDeposito;
     private javax.swing.JButton botaoConfirmarDepósito;
-    private javax.swing.JButton botaoVoltar;
     private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

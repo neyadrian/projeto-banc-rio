@@ -5,6 +5,7 @@
 package com.mycompany.projeto.bancario.View;
 
 import com.mycompany.projeto.bancario.Controler.Saque;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +34,6 @@ public class TelaSaque extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botaoVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         campoValor = new javax.swing.JTextField();
@@ -48,24 +48,15 @@ public class TelaSaque extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/voltar.png"))); // NOI18N
-        botaoVoltar.addActionListener(this::botaoVoltarActionPerformed);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 402, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 39, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(57, 161, 56));
@@ -161,17 +152,28 @@ public class TelaSaque extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCancelarSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarSaqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCancelarSaqueActionPerformed
-
-    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoVoltarActionPerformed
-
     private void botaoConfirmarSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarSaqueActionPerformed
         new Saque().processar(this, this.contaLogada, campoValor.getText(), new String(campoSenha.getPassword()));
     }//GEN-LAST:event_botaoConfirmarSaqueActionPerformed
+
+    private void botaoCancelarSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarSaqueActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(
+            null, 
+            "Deseja cancelar o Depósito?", 
+            "Sair do Depósito",                 
+            JOptionPane.YES_NO_OPTION
+        );
+       
+        if (resposta == JOptionPane.YES_OPTION) {
+            System.out.println("Depósito Cancelado");
+            dispose();
+            new TelaPrincipal("").setVisible(true);
+        } else if(resposta == JOptionPane.NO_OPTION) {
+            
+        } else {
+            
+        }
+    }//GEN-LAST:event_botaoCancelarSaqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,7 +203,6 @@ public class TelaSaque extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelarSaque;
     private javax.swing.JButton botaoConfirmarSaque;
-    private javax.swing.JButton botaoVoltar;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
