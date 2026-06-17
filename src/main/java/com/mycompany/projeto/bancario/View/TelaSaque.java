@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import com.mycompany.projeto.bancario.Controler.Saque;
+
 /**
  *
  * @author neyadrian
@@ -11,11 +13,13 @@ package com.mycompany.projeto.bancario.View;
 public class TelaSaque extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaSaque.class.getName());
+    private final String contaLogada;
 
     /**
      * Creates new form TelaSaque
      */
-    public TelaSaque() {
+    public TelaSaque(String numeroConta) {
+        this.contaLogada = numeroConta;
         initComponents();
     }
 
@@ -32,12 +36,12 @@ public class TelaSaque extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        campoSaque = new javax.swing.JTextField();
+        campoValor = new javax.swing.JTextField();
         botaoConfirmarSaque = new javax.swing.JButton();
         botaoCancelarSaque = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        senhaSaque = new javax.swing.JPasswordField();
+        campoSenha = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,6 +75,7 @@ public class TelaSaque extends javax.swing.JFrame {
 
         botaoConfirmarSaque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
         botaoConfirmarSaque.setText("CONFIRMAR");
+        botaoConfirmarSaque.addActionListener(this::botaoConfirmarSaqueActionPerformed);
 
         botaoCancelarSaque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelarSaque.setText("CANCELAR");
@@ -109,11 +114,11 @@ public class TelaSaque extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(senhaSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(campoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -126,10 +131,10 @@ public class TelaSaque extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(campoSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senhaSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -164,6 +169,10 @@ public class TelaSaque extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
+    private void botaoConfirmarSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarSaqueActionPerformed
+        new Saque().processar(this, this.contaLogada, campoValor.getText(), new String(campoSenha.getPassword()));
+    }//GEN-LAST:event_botaoConfirmarSaqueActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,20 +195,20 @@ public class TelaSaque extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaSaque().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaSaque("").setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelarSaque;
     private javax.swing.JButton botaoConfirmarSaque;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JTextField campoSaque;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField senhaSaque;
     // End of variables declaration//GEN-END:variables
 }

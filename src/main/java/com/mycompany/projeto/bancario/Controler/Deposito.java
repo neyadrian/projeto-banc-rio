@@ -34,6 +34,7 @@ public class Deposito {
 
                 JOptionPane.showMessageDialog(TelaDepósito, "Depósito realizado com sucesso!");
                 TelaDepósito.dispose();
+                new com.mycompany.projeto.bancario.View.TelaPrincipal(contaLogada).setVisible(true);
                 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(TelaDepósito, "Erro no banco: " + e.getMessage());
