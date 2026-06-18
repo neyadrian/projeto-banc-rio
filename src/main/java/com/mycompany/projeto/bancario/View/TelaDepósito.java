@@ -4,7 +4,7 @@
  */
 package com.mycompany.projeto.bancario.View;
 
-import com.mycompany.projeto.bancario.Controler.Deposito;
+import com.mycompany.projeto.bancario.Controller.Deposito;
 import javax.swing.JOptionPane;
 
 /**

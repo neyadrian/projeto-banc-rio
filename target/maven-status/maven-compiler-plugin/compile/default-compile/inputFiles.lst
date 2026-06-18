@@ -1,6 +1,7 @@
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\BancoDeDados\conexao.java
-C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controler\Deposito.java
-C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controler\Saque.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Deposito.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Saque.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Transferencia.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\Main.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\View\TelaCadastro.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\View\TelaDeposito.java

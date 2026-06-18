@@ -11,11 +11,13 @@ package com.mycompany.projeto.bancario.View;
 public class TelaPix extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPix.class.getName());
+    private String contaLogada;
 
     /**
      * Creates new form TelaPix
      */
-    public TelaPix() {
+    public TelaPix(String numeroConta) {
+        this.contaLogada = numeroConta;
         initComponents();
     }
 
@@ -33,10 +35,10 @@ public class TelaPix extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        campoPix = new javax.swing.JTextField();
-        campoCPFPix = new javax.swing.JFormattedTextField();
+        campoValor = new javax.swing.JTextField();
+        campoCpfDestino = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        senhaPix = new javax.swing.JPasswordField();
+        campoSenha = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         botaoConfirmarPIX = new javax.swing.JButton();
         botaoCancelarPIX = new javax.swing.JButton();
@@ -83,10 +85,10 @@ public class TelaPix extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Valor");
 
-        campoPix.addActionListener(this::campoPixActionPerformed);
+        campoValor.addActionListener(this::campoValorActionPerformed);
 
         try {
-            campoCPFPix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            campoCpfDestino.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -99,6 +101,7 @@ public class TelaPix extends javax.swing.JFrame {
 
         botaoConfirmarPIX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
         botaoConfirmarPIX.setText("CONFIRMAR");
+        botaoConfirmarPIX.addActionListener(this::botaoConfirmarPIXActionPerformed);
 
         botaoCancelarPIX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
         botaoCancelarPIX.setText("CANCELAR");
@@ -138,9 +141,9 @@ public class TelaPix extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoCPFPix)
-                            .addComponent(campoPix)
-                            .addComponent(senhaPix, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(campoCpfDestino)
+                            .addComponent(campoValor)
+                            .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -153,14 +156,14 @@ public class TelaPix extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(campoCPFPix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCpfDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoPix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senhaPix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -191,13 +194,17 @@ public class TelaPix extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCancelarPIXActionPerformed
 
-    private void campoPixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPixActionPerformed
+    private void campoValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoPixActionPerformed
+    }//GEN-LAST:event_campoValorActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoVoltarActionPerformed
+
+    private void botaoConfirmarPIXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarPIXActionPerformed
+        new com.mycompany.projeto.bancario.Controller.Transferencia().processar(this, this.contaLogada, campoCpfDestino.getText(), campoValor.getText(), new String(campoSenha.getPassword()));
+    }//GEN-LAST:event_botaoConfirmarPIXActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +228,7 @@ public class TelaPix extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaPix().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaPix("").setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,8 +236,9 @@ public class TelaPix extends javax.swing.JFrame {
     private javax.swing.JButton botaoCancelarPIX;
     private javax.swing.JButton botaoConfirmarPIX;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JFormattedTextField campoCPFPix;
-    private javax.swing.JTextField campoPix;
+    private javax.swing.JFormattedTextField campoCpfDestino;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -238,6 +246,5 @@ public class TelaPix extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField senhaPix;
     // End of variables declaration//GEN-END:variables
 }

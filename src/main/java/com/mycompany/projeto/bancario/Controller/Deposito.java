@@ -1,4 +1,4 @@
-package com.mycompany.projeto.bancario.Controler;
+package com.mycompany.projeto.bancario.Controller;
 
 import com.mycompany.projeto.bancario.BancoDeDados.conexao;
 import javax.swing.JFrame;

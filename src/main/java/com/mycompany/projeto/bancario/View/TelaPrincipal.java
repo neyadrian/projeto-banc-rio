@@ -95,6 +95,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
         botaoVerExtrato.setText("Ver Extrato");
+        botaoVerExtrato.addActionListener(this::botaoVerExtratoActionPerformed);
 
         botaoDeposito.setText("Depósito");
         botaoDeposito.addActionListener(this::botaoDepositoActionPerformed);
@@ -182,7 +183,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoDepositoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new TelaPix(this.contaLogada).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -209,6 +211,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
  
     }//GEN-LAST:event_botaoDeslogarActionPerformed
+
+    private void botaoVerExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVerExtratoActionPerformed
+        
+    }//GEN-LAST:event_botaoVerExtratoActionPerformed
 
     /**
      * @param args the command line arguments

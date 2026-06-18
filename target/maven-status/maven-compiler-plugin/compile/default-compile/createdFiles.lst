@@ -1,6 +1,7 @@
 com\mycompany\projeto\bancario\View\TelaExtrato$1.class
+com\mycompany\projeto\bancario\Controller\Transferencia.class
 com\mycompany\projeto\bancario\View\TelaDeposito.class
-com\mycompany\projeto\bancario\Controler\Deposito.class
+com\mycompany\projeto\bancario\Controller\Deposito.class
 com\mycompany\projeto\bancario\View\TelaSaque.class
 com\mycompany\projeto\bancario\View\TelaCadastro.class
 com\mycompany\projeto\bancario\View\TelaExtrato.class
@@ -8,6 +9,6 @@ com\mycompany\projeto\bancario\Model\Main.class
 com\mycompany\projeto\bancario\BancoDeDados\conexao.class
 com\mycompany\projeto\bancario\View\TelaPrincipal.class
 com\mycompany\projeto\bancario\View\TelaLogin.class
-com\mycompany\projeto\bancario\Controler\Saque.class
+com\mycompany\projeto\bancario\Controller\Saque.class
 com\mycompany\projeto\bancario\View\TelaPix.class
 com\mycompany\projeto\bancario\View\TelaDepósito.class
