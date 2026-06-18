@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.projeto.bancario.View;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +18,31 @@ public class TelaPix extends javax.swing.JFrame {
     public TelaPix(String numeroConta) {
         this.contaLogada = numeroConta;
         initComponents();
+        
+        carregarSaldoConta();
     }
 
+    private void carregarSaldoConta() {
+        String sql = "SELECT saldo FROM contas WHERE numero_conta = ?";
+
+        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, this.contaLogada);
+            
+            java.sql.ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                double saldoDoBanco = rs.getDouble("saldo");
+                
+                saldoCliente.setText(String.format("R$ %.2f", saldoDoBanco));
+            }
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao buscar os dados da conta: " + e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +54,6 @@ public class TelaPix extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        botaoVoltar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         campoValor = new javax.swing.JTextField();
@@ -43,7 +64,8 @@ public class TelaPix extends javax.swing.JFrame {
         botaoConfirmarPIX = new javax.swing.JButton();
         botaoCancelarPIX = new javax.swing.JButton();
         Pix = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        saldoCliente = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -60,24 +82,15 @@ public class TelaPix extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/voltar.png"))); // NOI18N
-        botaoVoltar.addActionListener(this::botaoVoltarActionPerformed);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 402, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botaoVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 39, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(57, 161, 56));
@@ -111,30 +124,28 @@ public class TelaPix extends javax.swing.JFrame {
         Pix.setForeground(new java.awt.Color(255, 255, 255));
         Pix.setText("PIX");
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Saldo Atual: R$ 709,09");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Saldo Atual:");
+
+        saldoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        saldoCliente.setText("R$ 709,09");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(botaoConfirmarPIX)
-                .addGap(26, 26, 26)
-                .addComponent(botaoCancelarPIX)
-                .addGap(67, 67, 67))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(Pix))
-                            .addComponent(jLabel4)))
+                        .addGap(65, 65, 65)
+                        .addComponent(botaoConfirmarPIX)
+                        .addGap(26, 26, 26)
+                        .addComponent(botaoCancelarPIX))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(162, 162, 162)
+                        .addComponent(Pix))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -143,17 +154,24 @@ public class TelaPix extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(campoCpfDestino)
                             .addComponent(campoValor)
-                            .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saldoCliente)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(Pix)
-                .addGap(3, 3, 3)
-                .addComponent(jLabel4)
-                .addGap(27, 27, 27)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saldoCliente)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(campoCpfDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,11 +183,11 @@ public class TelaPix extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConfirmarPIX)
                     .addComponent(botaoCancelarPIX))
-                .addGap(42, 42, 42))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,16 +209,27 @@ public class TelaPix extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCancelarPIXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarPIXActionPerformed
-        // TODO add your handling code here:
+        int resposta = JOptionPane.showConfirmDialog(
+            null, 
+            "Deseja cancelar o Pix?", 
+            "Sair do Pix",                 
+            JOptionPane.YES_NO_OPTION
+        );
+       
+        if (resposta == JOptionPane.YES_OPTION) {
+            System.out.println("Pix Cancelado");
+            dispose();
+            new TelaPrincipal(this.contaLogada).setVisible(true);
+        } else if(resposta == JOptionPane.NO_OPTION) {
+            
+        } else {
+            
+        }
     }//GEN-LAST:event_botaoCancelarPIXActionPerformed
 
     private void campoValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoValorActionPerformed
-
-    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoConfirmarPIXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarPIXActionPerformed
         new com.mycompany.projeto.bancario.Controller.Transferencia().processar(this, this.contaLogada, campoCpfDestino.getText(), campoValor.getText(), new String(campoSenha.getPassword()));
@@ -235,16 +264,16 @@ public class TelaPix extends javax.swing.JFrame {
     private javax.swing.JLabel Pix;
     private javax.swing.JButton botaoCancelarPIX;
     private javax.swing.JButton botaoConfirmarPIX;
-    private javax.swing.JButton botaoVoltar;
     private javax.swing.JFormattedTextField campoCpfDestino;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel saldoCliente;
     // End of variables declaration//GEN-END:variables
 }
