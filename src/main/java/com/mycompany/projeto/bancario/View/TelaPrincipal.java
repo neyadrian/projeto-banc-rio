@@ -31,7 +31,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 double saldoDoBanco = rs.getDouble("saldo");
                 
                 nomeCliente.setText("Olá, " + nomeDoBanco + "!");
-                saldoCliente.setText(String.format("R$ %.2f", saldoDoBanco));
+                java.text.NumberFormat formatoMoeda = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR"));
+                saldoCliente.setText(formatoMoeda.format(saldoDoBanco));
             }
 
         } catch (Exception e) {
