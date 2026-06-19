@@ -35,7 +35,8 @@ public class TelaPix extends javax.swing.JFrame {
             if (rs.next()) {
                 double saldoDoBanco = rs.getDouble("saldo");
                 
-                saldoCliente.setText(String.format("R$ %.2f", saldoDoBanco));
+                java.text.NumberFormat formatoMoeda = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR"));
+                saldoCliente.setText(formatoMoeda.format(saldoDoBanco));
             }
 
         } catch (Exception e) {

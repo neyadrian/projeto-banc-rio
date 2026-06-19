@@ -16,8 +16,10 @@ public class TelaExtrato extends javax.swing.JFrame {
     /**
      * Creates new form TelaExtrato
      */
-    public TelaExtrato(String contaLogada) {
+    public TelaExtrato(String numeroConta){
+        this.contaLogada = numeroConta;
         initComponents();
+        
     }
 
     /**
@@ -162,7 +164,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-       // java.awt.EventQueue.invokeLater(() -> new TelaExtrato(this.contaLogada).setVisible(true));
+       java.awt.EventQueue.invokeLater(() -> new TelaExtrato("").setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

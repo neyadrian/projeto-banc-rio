@@ -11,4 +11,5 @@ com\mycompany\projeto\bancario\View\TelaPrincipal.class
 com\mycompany\projeto\bancario\View\TelaLogin.class
 com\mycompany\projeto\bancario\Controller\Saque.class
 com\mycompany\projeto\bancario\View\TelaPix.class
+com\mycompany\projeto\bancario\Controller\Rendimento.class
 com\mycompany\projeto\bancario\View\TelaDepósito.class
