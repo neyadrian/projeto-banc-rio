@@ -70,12 +70,12 @@ public class Transferencia {
                                     String sqlExtrato = "INSERT INTO transacoes (id_conta, tipo_operacao, valor, descricao) VALUES (?, ?, ?, ?)";
                                     try(PreparedStatement stmtExt = conn.prepareStatement(sqlExtrato)) {
                                         stmtExt.setInt(1, idRemetente);
-                                        stmtExt.setString(2, "TRANSFERENCIA_ENVIADA");
+                                        stmtExt.setString(2, "TRANSF_ENVIADA");
                                         stmtExt.setDouble(3, valorTransferencia);
                                         stmtExt.setString(4, "Para CPF: " + cpfDestino + " (" + nomeDestinatario + ")");
                                         stmtExt.executeUpdate();
                                         stmtExt.setInt(1, idDestinatario);
-                                        stmtExt.setString(2, "TRANSFERENCIA_RECEBIDA");
+                                        stmtExt.setString(2, "TRANSF_RECEBIDA");
                                         stmtExt.setDouble(3, valorTransferencia);
                                         stmtExt.setString(4, "De CPF: " + cpfRemetente);
                                         stmtExt.executeUpdate();

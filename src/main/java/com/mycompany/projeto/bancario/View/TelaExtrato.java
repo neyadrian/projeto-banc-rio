@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto.bancario.View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author neyadrian
@@ -20,6 +22,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         this.contaLogada = numeroConta;
         initComponents();
         
+        new com.mycompany.projeto.bancario.Controller.Extrato().tabela(tabela, this.contaLogada);
     }
 
     /**
@@ -35,9 +38,8 @@ public class TelaExtrato extends javax.swing.JFrame {
         botaoSairExtrato = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         extrato = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,10 +71,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         extrato.setForeground(new java.awt.Color(255, 255, 255));
         extrato.setText("Extrato");
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Saldo do Dia: R$ 709,09");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -91,8 +90,8 @@ public class TelaExtrato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        tabela.setToolTipText("");
+        jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -100,21 +99,16 @@ public class TelaExtrato extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(extrato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                    .addComponent(extrato))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(extrato)
-                    .addComponent(jLabel1))
+                .addComponent(extrato)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -139,7 +133,8 @@ public class TelaExtrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSairExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairExtratoActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new TelaPrincipal(this.contaLogada).setVisible(true);
     }//GEN-LAST:event_botaoSairExtratoActionPerformed
 
     /**
@@ -170,10 +165,9 @@ public class TelaExtrato extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSairExtrato;
     private javax.swing.JLabel extrato;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

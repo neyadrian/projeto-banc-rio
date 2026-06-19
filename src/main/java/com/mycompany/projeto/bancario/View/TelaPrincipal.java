@@ -88,7 +88,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botaoDeslogar)
-                .addGap(298, 298, 298)
+                .addGap(255, 255, 255)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -121,10 +121,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         nomeCliente.setForeground(new java.awt.Color(255, 255, 255));
         nomeCliente.setText("Olá, Ney Adrian!");
 
-        saldoCliente.setFont(new java.awt.Font("Fira Sans", 0, 36)); // NOI18N
+        saldoCliente.setFont(new java.awt.Font("Fira Sans", 1, 36)); // NOI18N
         saldoCliente.setForeground(new java.awt.Color(255, 255, 255));
         saldoCliente.setText("709,09");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Saldo Atual:");
 
