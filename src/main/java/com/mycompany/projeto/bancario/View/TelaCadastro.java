@@ -43,6 +43,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         campoNovoTelefone = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         campoNovaSenha = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        tipoConta = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -90,38 +92,44 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         campoNovaSenha.addActionListener(this::campoNovaSenhaActionPerformed);
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Tipo");
+
+        tipoConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CORRENTE", "POUPANCA" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cadastro)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cadastro)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(campoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(novoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoNovoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(campoNovoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(novoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoNovoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(botaoCriarConta1)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoCancelarCadastro)))
+                                    .addComponent(botaoCriarConta1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(botaoCancelarCadastro))
+                                .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tipoConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -145,7 +153,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(tipoConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCriarConta1)
                     .addComponent(botaoCancelarCadastro))
@@ -200,39 +212,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         String cpf = campoNovoCPF.getText();
         String telefone = campoNovoTelefone.getText();
         String senha = new String(campoNovaSenha.getPassword());
+        
+        String tipoSelecionado = tipoConta.getSelectedItem().toString();
 
-        if(nome.isEmpty() || cpf.equals("   .   .   -  ") || senha.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
-            return;
-        }
-
-        String numeroConta = String.valueOf((int)(Math.random() * 90000) + 10000);
-
-        String sql = "INSERT INTO contas (numero_conta, nome_titular, cpf, telefone, senha) VALUES (?, ?, ?, ?, ?)";
-
-        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
-            java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, numeroConta);
-            stmt.setString(2, nome);
-            stmt.setString(3, cpf);
-            stmt.setString(4, telefone);
-            stmt.setString(5, senha);
-
-            stmt.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!\nSua conta é: " + numeroConta);
-
-            dispose();
-            new TelaPrincipal(numeroConta).setVisible(true);
-
-        } catch (java.sql.SQLException e) {
-            if(e.getMessage().contains("Duplicate entry")){
-                JOptionPane.showMessageDialog(this, "Erro: Este CPF já está cadastrado.");
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao salvar no banco: " + e.getMessage());
-            }
-        }
+        new com.mycompany.projeto.bancario.Controller.Cadastro().cadastrarUsuario(
+            this, nome, cpf, telefone, senha, tipoSelecionado
+        );
     }//GEN-LAST:event_botaoCriarConta1ActionPerformed
 
     private void botaoCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarCadastroActionPerformed
@@ -276,8 +261,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField novoNome;
+    private javax.swing.JComboBox<String> tipoConta;
     // End of variables declaration//GEN-END:variables
 }

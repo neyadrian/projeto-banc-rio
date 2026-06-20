@@ -1,8 +1,13 @@
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\BancoDeDados\conexao.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Cadastro.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Deposito.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Extrato.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Saque.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Controller\Transferencia.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\Cliente.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\Conta.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\ContaCorrente.java
+C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\ContaPoupanca.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\Model\Main.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\View\TelaCadastro.java
 C:\Users\neyad\Downloads\projeto-banc-rio\src\main\java\com\mycompany\projeto\bancario\View\TelaDeposito.java
