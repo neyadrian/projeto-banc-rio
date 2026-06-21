@@ -21,7 +21,7 @@ public class TelaExtrato extends javax.swing.JFrame {
     public TelaExtrato(String numeroConta){
         this.contaLogada = numeroConta;
         initComponents();
-        
+        setLocationRelativeTo(null);
         new com.mycompany.projeto.bancario.Controller.Extrato().tabela(tabela, this.contaLogada);
     }
 

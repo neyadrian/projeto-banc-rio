@@ -12,7 +12,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal(String numeroConta) {
         this.contaLogada = numeroConta;
         initComponents();
-        
+        setLocationRelativeTo(null);
         carregarDadosConta();
     }
 

@@ -22,7 +22,7 @@ public class TelaSaque extends javax.swing.JFrame {
     public TelaSaque(String numeroConta) {
         this.contaLogada = numeroConta;
         initComponents();
-        
+        setLocationRelativeTo(null);
         carregarSaldoConta();    
     }
     

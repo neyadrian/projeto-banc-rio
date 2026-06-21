@@ -22,6 +22,7 @@ public class TelaDepósito extends javax.swing.JFrame {
     public TelaDepósito(String numeroConta) {
         this.contaLogada = numeroConta;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
