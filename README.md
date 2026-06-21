@@ -4,7 +4,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 ![Swing](https://img.shields.io/badge/Java_Swing-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 
-Aplicação desktop de simulação bancária desenvolvida em Java. O sistema permite o gerenciamento completo de contas bancárias, incluindo operações de depósito, saque (com regras de taxas por tipo de conta), transferências via PIX, extrato detalhado, rendimento automático e simulação de empréstimos.
+Aplicação desktop de simulação bancária desenvolvida em Java. O sistema permite o gerenciamento completo de contas bancárias, incluindo operações de depósito, saque (com regras de taxas por tipo de conta), transferências via PIX, extrato detalhado e simulação de empréstimos.
 
 ---
 
@@ -16,7 +16,6 @@ Aplicação desktop de simulação bancária desenvolvida em Java. O sistema per
   - Saques (com aplicação de taxas específicas dependendo do tipo da conta).
   - Transferências via PIX (validação de saldo e destinatário).
 - **Extrato:** Histórico detalhado de transações organizadas por data e hora.
-- **Rendimento:** Cálculo de juros compostos para contas poupança de forma automática.
 - **Empréstimos:** Simulador de parcelamento e contratação de crédito instantâneo.
 
 ---
