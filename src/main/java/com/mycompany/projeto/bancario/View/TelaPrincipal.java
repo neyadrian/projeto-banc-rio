@@ -58,15 +58,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoValorEmprestimo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        campoParcelas = new javax.swing.JTextField();
+        botaoSimular = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tabelaEmprestimo = new javax.swing.JTable();
+        botaoConfirmar = new javax.swing.JButton();
+        botaoCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
@@ -141,7 +141,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Faça uma Simulação");
 
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        campoValorEmprestimo.addActionListener(this::campoValorEmprestimoActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,11 +151,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("N° de Parcelas:");
 
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        campoParcelas.addActionListener(this::campoParcelasActionPerformed);
 
-        jButton1.setText("Simular");
+        botaoSimular.setText("Simular");
+        botaoSimular.addActionListener(this::botaoSimularActionPerformed);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -174,15 +175,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaEmprestimo);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
-        jButton4.setText("SIM");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        botaoConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/valid.png"))); // NOI18N
+        botaoConfirmar.setText("SIM");
+        botaoConfirmar.addActionListener(this::botaoConfirmarActionPerformed);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
-        jButton5.setText("NÃO");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/projeto/bancario/Icones/cancelar-icono-9428-128.png"))); // NOI18N
+        botaoCancelar.setText("NÃO");
+        botaoCancelar.addActionListener(this::botaoCancelarActionPerformed);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,8 +200,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoValorEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,9 +212,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(botaoConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
                                         .addComponent(jLabel7)))
@@ -223,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
-                                .addComponent(jButton1))
+                                .addComponent(botaoSimular))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,22 +243,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoValorEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(botaoSimular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(botaoConfirmar)
+                    .addComponent(botaoCancelar))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -368,21 +369,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new TelaExtrato(this.contaLogada).setVisible(true);
     }//GEN-LAST:event_botaoVerExtratoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void campoValorEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorEmprestimoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_campoValorEmprestimoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void campoParcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoParcelasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_campoParcelasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void botaoConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarActionPerformed
+        String valorDigitado = campoValorEmprestimo.getText();
+    
+        if(!valorDigitado.isEmpty()) {
+            new com.mycompany.projeto.bancario.Controller.Emprestimo().efetivarEmprestimo(this.contaLogada, valorDigitado);
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+            carregarDadosConta();
+
+            campoValorEmprestimo.setText("");
+            campoParcelas.setText("");
+            ((javax.swing.table.DefaultTableModel) tabelaEmprestimo.getModel()).setNumRows(0);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Faça uma simulação primeiro!");
+        }
+    }//GEN-LAST:event_botaoConfirmarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        campoValorEmprestimo.setText("");
+        campoParcelas.setText("");
+        ((javax.swing.table.DefaultTableModel) tabelaEmprestimo.getModel()).setNumRows(0);
+    }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void botaoSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSimularActionPerformed
+        new com.mycompany.projeto.bancario.Controller.Emprestimo().simularEmprestimo(
+        tabelaEmprestimo,
+        campoValorEmprestimo.getText(), 
+        campoParcelas.getText()
+    );
+    }//GEN-LAST:event_botaoSimularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,14 +415,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoConfirmar;
     private javax.swing.JButton botaoDeposito;
     private javax.swing.JButton botaoDeslogar;
+    private javax.swing.JButton botaoSimular;
     private javax.swing.JButton botaoVerExtrato;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField campoParcelas;
+    private javax.swing.JTextField campoValorEmprestimo;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -411,11 +436,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel nomeCliente;
     private javax.swing.JLabel saldoCliente;
+    private javax.swing.JTable tabelaEmprestimo;
     // End of variables declaration//GEN-END:variables
 }

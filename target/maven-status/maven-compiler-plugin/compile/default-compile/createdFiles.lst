@@ -13,6 +13,7 @@ com\mycompany\projeto\bancario\Controller\Extrato.class
 com\mycompany\projeto\bancario\Model\Main.class
 com\mycompany\projeto\bancario\View\TelaPrincipal$1.class
 com\mycompany\projeto\bancario\BancoDeDados\conexao.class
+com\mycompany\projeto\bancario\Controller\Emprestimo.class
 com\mycompany\projeto\bancario\View\TelaPrincipal.class
 com\mycompany\projeto\bancario\View\TelaLogin.class
 com\mycompany\projeto\bancario\Controller\Saque.class
