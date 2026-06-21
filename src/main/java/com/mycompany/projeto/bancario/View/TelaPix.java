@@ -25,7 +25,7 @@ public class TelaPix extends javax.swing.JFrame {
     private void carregarSaldoConta() {
         String sql = "SELECT saldo FROM contas WHERE numero_conta = ?";
 
-        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+        try (java.sql.Connection conn = com.mycompany.projeto.bancario.Utils.conexao.conectar();
              java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, this.contaLogada);

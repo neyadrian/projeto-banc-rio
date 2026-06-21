@@ -183,7 +183,7 @@ public class TelaLogin extends javax.swing.JFrame {
         
         String sql = "SELECT numero_conta FROM contas WHERE cpf = ? AND senha = ?";
         
-        try (java.sql.Connection conn = com.mycompany.projeto.bancario.BancoDeDados.conexao.conectar();
+        try (java.sql.Connection conn = com.mycompany.projeto.bancario.Utils.conexao.conectar();
              java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, cpfCliente);

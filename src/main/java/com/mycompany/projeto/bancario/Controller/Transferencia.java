@@ -1,7 +1,7 @@
 
 package com.mycompany.projeto.bancario.Controller;
 
-import com.mycompany.projeto.bancario.BancoDeDados.conexao;
+import com.mycompany.projeto.bancario.Utils.conexao;
 import com.mycompany.projeto.bancario.View.TelaPrincipal; 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

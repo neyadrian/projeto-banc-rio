@@ -1,5 +1,5 @@
 
-package com.mycompany.projeto.bancario.BancoDeDados;
+package com.mycompany.projeto.bancario.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

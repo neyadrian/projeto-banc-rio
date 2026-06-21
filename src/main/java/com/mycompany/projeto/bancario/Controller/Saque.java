@@ -1,6 +1,6 @@
 package com.mycompany.projeto.bancario.Controller;
 
-import com.mycompany.projeto.bancario.BancoDeDados.conexao;
+import com.mycompany.projeto.bancario.Utils.conexao;
 import com.mycompany.projeto.bancario.Model.Cliente;
 import com.mycompany.projeto.bancario.Model.Conta;
 import com.mycompany.projeto.bancario.Model.ContaCorrente;

@@ -1,7 +1,7 @@
 
 package com.mycompany.projeto.bancario.Controller;
 
-import com.mycompany.projeto.bancario.BancoDeDados.conexao;
+import com.mycompany.projeto.bancario.Utils.conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

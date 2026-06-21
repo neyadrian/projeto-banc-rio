@@ -4,7 +4,7 @@
  */
 package com.mycompany.projeto.bancario.View;
 
-import com.mycompany.projeto.bancario.BancoDeDados.conexao;
+import com.mycompany.projeto.bancario.Utils.conexao;
 import javax.swing.JOptionPane;
 
 /**

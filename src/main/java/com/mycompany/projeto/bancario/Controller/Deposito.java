@@ -1,6 +1,6 @@
 package com.mycompany.projeto.bancario.Controller;
 
-import com.mycompany.projeto.bancario.BancoDeDados.conexao;
+import com.mycompany.projeto.bancario.Utils.conexao;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
