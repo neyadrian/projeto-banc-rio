@@ -33,7 +33,7 @@ public class Cadastro {
             stmt.setString(3, cpf);
             stmt.setString(4, telefone);
             stmt.setString(5, senha);
-            stmt.setString(6, tipoConta); // Nova coluna!
+            stmt.setString(6, tipoConta);
 
             stmt.executeUpdate();
 
