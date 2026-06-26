@@ -69,7 +69,7 @@ O sistema foi rigorosamente desenhado para atender aos fundamentos da Programaç
 
 ### Princípios SOLID:
 - **SRP (Single Responsibility Principle):** Separação estrita onde a `View` apenas desenha a interface, o `Model` guarda a estrutura de dados e o `Controller` gerencia a lógica e o acesso ao banco.
-- **OCP (Open/Closed Principle):** O sistema permite a adição de novos tipos de conta (ex: Conta Salário) através de herança e extensão da classe `Conta`, sem necessidade de modificar a lógica base existente.
+- **OCP (Open/Closed Principle):** O sistema permite a adição de novos tipos de conta (ex: Conta Corrente) através de herança e extensão da classe `Conta`, sem necessidade de modificar a lógica base existente.
 - **LSP (Liskov Substitution Principle):** Os métodos do sistema (como saques) podem receber qualquer objeto derivado de `Conta` garantindo que o programa continue funcionando de forma íntegra.
 
 ---
