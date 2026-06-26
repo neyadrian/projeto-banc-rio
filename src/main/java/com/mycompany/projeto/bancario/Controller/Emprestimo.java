@@ -1,6 +1,9 @@
 
 package com.mycompany.projeto.bancario.Controller;
 
+import com.mycompany.projeto.bancario.Model.Conta;
+import com.mycompany.projeto.bancario.Model.ContaCorrente;
+import com.mycompany.projeto.bancario.Model.ContaPoupanca;
 import com.mycompany.projeto.bancario.Utils.conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,8 +18,31 @@ import java.util.Locale;
  * @author neyad
  */
 public class Emprestimo {
+   
+    public String obterTaxa(String numeroConta) {
+        String sql = "SELECT  tipo_conta FROM contas WHERE numero_conta = ?";
+        
+        try (java.sql.Connection conn = conexao.conectar(); java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, numeroConta);
+            java.sql.ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                String tipo = rs.getString("tipo_conta");
+                
+                if("CORRENTE".equals(tipo)) {
+                    return "Conta corrente de 5% ao mês!";
+                } else {
+                    return "Conta poupança de 2% ao mês!";
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar a taxa: " + e.getMessage());
+        }
+        return "Taxa de juros padrão de 5% ao mês!";
+    }  
     
-    public void simularEmprestimo(JTable tabela, String valorTexto, String parcelasTexto) {
+    public void simularEmprestimo(JTable tabela, String valorTexto, String parcelasTexto, String contaLogada) {
         try {
             double valorSolicitado = Double.parseDouble(valorTexto.replace(",", "."));
             int parcelas = Integer.parseInt(parcelasTexto);
@@ -27,6 +53,29 @@ public class Emprestimo {
             }
             
             double taxaJuros = 0.05;
+            String sql = "SELECT tipo_conta FROM contas WHERE numero_conta = ?";
+            
+            try (java.sql.Connection conn = conexao.conectar(); java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+                stmt.setString(1, contaLogada);
+                java.sql.ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    String tipoConta = rs.getString("tipo_conta");
+
+                    Conta contaObjeto;
+                    if ("CORRENTE".equals(tipoConta)) {
+                        contaObjeto = new ContaCorrente(contaLogada, 0.0, null);
+                    } else {
+                        contaObjeto = new ContaPoupanca(contaLogada, 0.0, null);
+                    }
+
+                    taxaJuros = contaObjeto.getTaxaEmprestimo();
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao aplicar taxa polimórfica: " + e.getMessage());
+            }
+            
             double valorTotalComJuros = valorSolicitado + (valorSolicitado * taxaJuros * parcelas);
             double valorParcela = valorTotalComJuros / parcelas;
             

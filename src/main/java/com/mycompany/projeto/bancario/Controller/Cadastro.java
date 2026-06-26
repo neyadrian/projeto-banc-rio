@@ -25,8 +25,7 @@ public class Cadastro {
 
         String sql = "INSERT INTO contas (numero_conta, nome_titular, cpf, telefone, senha, saldo, tipo_conta) VALUES (?, ?, ?, ?, ?, 0.0, ?)";
 
-        try (Connection conn = conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = conexao.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, numeroConta);
             stmt.setString(2, nome);

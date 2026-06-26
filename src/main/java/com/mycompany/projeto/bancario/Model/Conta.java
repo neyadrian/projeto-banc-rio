@@ -18,4 +18,6 @@ public abstract class Conta {
     }
     
     public abstract double taxaSaque(double valorDesejado);
+    
+    public abstract double getTaxaEmprestimo();
 }

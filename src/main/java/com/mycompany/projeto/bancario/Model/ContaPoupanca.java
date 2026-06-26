@@ -16,4 +16,9 @@ public class ContaPoupanca extends Conta{
         return valorDesejado; 
     }
     
+    @Override
+    public double getTaxaEmprestimo() {
+        return 0.02;
+    }
+    
 }

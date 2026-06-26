@@ -175,7 +175,7 @@ public class TelaLogin extends javax.swing.JFrame {
         
         String cpfCliente = campoCPF.getText();
         String senha = new String(campoSenha.getPassword());
-        
+            
         if (cpfCliente.isEmpty() || senha.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
             return;

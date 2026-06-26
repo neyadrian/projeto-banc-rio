@@ -14,5 +14,10 @@ public class ContaCorrente extends Conta{
     @Override
     public double taxaSaque(double valorDesejado) {
         return valorDesejado + 5.00;
-    }    
+    }
+
+    @Override
+    public double getTaxaEmprestimo() {
+        return 0.05;
+    }
 }
